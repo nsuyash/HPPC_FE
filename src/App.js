@@ -57,7 +57,7 @@ function App() {
   }
 
   return (
-    <div>
+    <>
       <header className="App-header text-center">
         <img src={logo} className="img-fluid" alt="logo" style={{ width: "250px" }} />
       </header>
@@ -190,12 +190,12 @@ function App() {
           )
         }
       </main>
-      <footer className="text-center mb-4">
-        <div className="px-3">
-          <p>&copy; HPPC 2025 | Independent Herbalife Associate</p>
+      <footer className="footer text-center mb-3">
+        <div className="px-5">
+          <p><span>&copy; HPPC 2025</span><br /><span>Independent Herbalife Associate</span></p>
         </div>
       </footer>
-    </div>
+    </>
   );
 }
 
