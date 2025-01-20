@@ -34,6 +34,7 @@ function App() {
   };
 
   const handleQuantityChange = (idx, action) => {
+    setShowFinalCalculation(false)
     const updatedProducts = [...selectedProducts];
     if (action === 'increase') {
       updatedProducts[idx].quantity += 1;
@@ -94,17 +95,17 @@ function App() {
           <div style={{ backgroundColor: "#f5c69f"}} className="mt-3 rounded border border-dark-subtle">
             <div className='row px-4 pt-3'>
                 <div className='col'>
-                  <label style={{ color: "black" }}><strong>Product Name</strong></label>
+                  <label style={{ color: "black", fontSize: 13 }}><strong>Product Name</strong></label>
                 </div>
                 <div className='col'>
-                  <label style={{ color: "black" }}><strong>MRP</strong></label>
+                  <label style={{ color: "black", fontSize: 13 }}><strong>MRP</strong></label>
                 </div>
                 <div className='col'>
-                  <label style={{ color: "black" }}><strong>Quantity</strong></label>
+                  <label style={{ color: "black", fontSize: 13 }}><strong>Quantity</strong></label>
                 </div>
             </div>
             <hr />
-            <div className='px-4 pt-3'>
+            <div className='px-3 pt-3'>
               {selectedProducts.map((item, idx) => (
                   <div className='row'>
                   <div className='col'>
@@ -119,7 +120,7 @@ function App() {
                         className="btn btn-sm btn-secondary"
                         onClick={() => handleQuantityChange(idx, 'decrease')}
                       >-</button>
-                      <label style={{ color: "black", fontSize: 12, backgroundColor: "white" }} className='px-1 py-1 rounded mx-1'>{item.quantity}</label>
+                      <label style={{ color: "black", fontSize: 12, backgroundColor: "white" }} className='px-1 py-1 mx-1'>{item.quantity}</label>
                       <button
                         className="btn btn-sm btn-secondary"
                         onClick={() => handleQuantityChange(idx, 'increase')}
@@ -149,16 +150,17 @@ function App() {
               </select>
               <div className='pt-4'>
                 <div className='text-center'>
-                  <button className='btn btn-success' onClick={() => handleCalculateBtn()}>Calculate</button><br /><hr />
+                  <button className='btn btn-success' onClick={() => handleCalculateBtn()}>Calculate</button><br />
                 </div>
                 {
                   showFinalCalculation && (
                     <>
+                      <hr />
                       <div className='row'>
-                        <div className='col'><strong>Product Name</strong></div>
-                        <div className='col'><strong>Quantity</strong></div>
-                        <div className='col'><strong>Discount</strong></div>
-                        <div className='col'><strong>Final Price</strong></div>
+                        <div className='col' style={{fontSize: 13}}><strong>Product Name</strong></div>
+                        <div className='col' style={{fontSize: 13}}><strong>Quantity</strong></div>
+                        <div className='col' style={{fontSize: 13}}><strong>Discount</strong></div>
+                        <div className='col' style={{fontSize: 13}}><strong>Final Price</strong></div>
                       </div>
                       <hr />
                       <div>
