@@ -58,6 +58,11 @@ function App() {
     setShowFinalCalculation(true)
   }
 
+  const handleRemoveProduct = (name) => {
+    setShowFinalCalculation(false)
+    const updatedRemoveProducts = selectedProducts.filter(item => item.name !== name)
+    setSelectedProducts(updatedRemoveProducts)
+  }
 
   return (
     <>
@@ -134,6 +139,9 @@ function App() {
                         className="btn btn-sm btn-secondary"
                         onClick={() => handleQuantityChange(idx, 'increase')}
                       >+</button>
+                      </div>
+                      <div>
+                        <button style={{color: "blue", background: "none", border: "none"}} className='ps-1' onClick={() => handleRemoveProduct(item.name)}>REMOVE</button>
                       </div>
                   </div>
                 </div>
