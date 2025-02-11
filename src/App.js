@@ -95,7 +95,7 @@ function App() {
               </select>
             </div>
             <div className="text-center py-4">
-              <button className="btn btn-success" onClick={handleAddProductBtn}>Add Product</button>
+              <button className="btn btn-success" onClick={handleAddProductBtn}>Add to Cart</button>
             </div>
           </div>
         </div>
@@ -107,10 +107,7 @@ function App() {
                   <label style={{ color: "black", fontSize: 13 }}><strong>Product Name</strong></label>
                 </div>
                 <div className='col'>
-                  <label style={{ color: "black", fontSize: 13 }}><strong>Volume Point</strong></label>
-                </div>
-                <div className='col'>
-                  <label style={{ color: "black", fontSize: 13 }}><strong>MRP</strong></label>
+                  <label style={{ color: "black", fontSize: 13 }}><strong>MRP / (Volume Point)</strong></label>
                 </div>
                 <div className='col'>
                   <label style={{ color: "black", fontSize: 13 }}><strong>Quantity</strong></label>
@@ -124,10 +121,7 @@ function App() {
                     <p style={{ color: "black", fontSize: 12 }}><strong>{idx + 1}.</strong> {item.name}</p>
                   </div>
                   <div className='col'>
-                    <p style={{ color: "black", fontSize: 12 }}><strong></strong> {item.volumePoint}</p>
-                  </div>
-                  <div className='col'>
-                    <p style={{ color: "black", fontSize: 12}}>₹ {item.mrp}</p>
+                    <p style={{ color: "black", fontSize: 12}}>₹ {item.mrp} / ({item.volumePoint})</p>
                   </div>
                   <div className='col'>
                       <div>
@@ -145,7 +139,7 @@ function App() {
                 </div>
               ))}
               <div className='text-center my-3'>
-                <button className='btn btn-secondary' onClick={() => setCalcualteSection(!calcualteSection)}>Next to Calculate</button>
+                <button className='btn btn-secondary' onClick={() => setCalcualteSection(!calcualteSection)}>Calculate Total Price</button>
               </div>
             </div>
           </div>
@@ -173,7 +167,7 @@ function App() {
                       <hr />
                       <div className='row'>
                         <div className='col' style={{fontSize: 13}}><strong>Product Name</strong></div>
-                        <div className='col' style={{fontSize: 13}}><strong>Quantity</strong></div>
+                        <div className='col' style={{fontSize: 13}}><strong>Quantity / (Volume Point)</strong></div>
                         <div className='col' style={{fontSize: 13}}><strong>Discount</strong></div>
                         <div className='col' style={{fontSize: 13}}><strong>Final Price</strong></div>
                       </div>
@@ -183,7 +177,7 @@ function App() {
                           finalProducts && finalProducts.length > 0 && finalProducts.map((item,idx) => (
                             <div className='row pb-2' key={idx}>
                               <div className='col' style={{fontSize: 12}}><strong>{idx + 1}. </strong>{item.name}</div>
-                              <div className='col' style={{fontSize: 12}}>{item.quantity}</div>
+                              <div className='col' style={{fontSize: 12}}>{item.quantity} / ({parseFloat(item.volumePoint)})</div>
                               <div className='col' style={{fontSize: 12}}>{item.discount}</div>
                               <div className='col' style={{fontSize: 12}}>₹ {item.price}</div>
                             </div>
