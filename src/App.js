@@ -51,11 +51,13 @@ function App() {
     setFinalProducts([])
     selectedProducts.forEach(item => {
       const finalPrice = item[discountRate]*item.quantity
-      const product = {name: item.name, price: finalPrice, quantity: item.quantity, discount: discountRate === "mrp" ? "MRP" : discountRate === "atTwentyFivePercent" ? "25 %" : discountRate === "atThirtyFivePercent" ? "35 %" : discountRate === "atFortyTwoPercent" ? "42 %" : discountRate === "atFiftyPercent" ? "50 %" : "Not Define"}
+      const totalVolumePoint = parseFloat(item.volumePoint)*item.quantity
+      const product = {name: item.name, price: finalPrice, quantity: item.quantity, discount: discountRate === "mrp" ? "MRP" : discountRate === "atTwentyFivePercent" ? "25 %" : discountRate === "atThirtyFivePercent" ? "35 %" : discountRate === "atFortyTwoPercent" ? "42 %" : discountRate === "atFiftyPercent" ? "50 %" : "Not Define", volumePoint: totalVolumePoint}
       setFinalProducts(prev => [...prev, product])
     })
     setShowFinalCalculation(true)
   }
+
 
   return (
     <>
@@ -63,6 +65,13 @@ function App() {
         <img src={logo} className="img-fluid" alt="logo" style={{ width: "250px" }} />
       </header>
       <main className="mb-3 mx-4">
+        <div className='text-center pb-4'>
+        <div className="disclaimer-container">
+        <p className="disclaimer-text ">
+            <strong>Disclaimer:</strong> This Herbalife product price calculator is based on the latest price list and volume points, accurate as of November 12, 2024. Prices may vary and are subject to change without notice.
+        </p>
+        </div>
+        </div>
         <div style={{ backgroundColor: "#eaf1ea" }} className="rounded border border-dark-subtle">
           <div className="row px-3 pt-2">
             <div className="col-md-6 pt-3">
@@ -98,6 +107,9 @@ function App() {
                   <label style={{ color: "black", fontSize: 13 }}><strong>Product Name</strong></label>
                 </div>
                 <div className='col'>
+                  <label style={{ color: "black", fontSize: 13 }}><strong>Volume Point</strong></label>
+                </div>
+                <div className='col'>
                   <label style={{ color: "black", fontSize: 13 }}><strong>MRP</strong></label>
                 </div>
                 <div className='col'>
@@ -110,6 +122,9 @@ function App() {
                   <div className='row'>
                   <div className='col'>
                     <p style={{ color: "black", fontSize: 12 }}><strong>{idx + 1}.</strong> {item.name}</p>
+                  </div>
+                  <div className='col'>
+                    <p style={{ color: "black", fontSize: 12 }}><strong></strong> {item.volumePoint}</p>
                   </div>
                   <div className='col'>
                     <p style={{ color: "black", fontSize: 12}}>₹ {item.mrp}</p>
@@ -177,11 +192,17 @@ function App() {
                       </div>
                       <hr />
                       <div className='row'>
-                        <div className='col float-end'><strong>Total Price</strong></div>
+                        <div className='col'><strong>Total Price</strong></div>
                         <div className='col'><strong>₹ {finalProducts.reduce((acc, curr) => {
                           return acc + curr.price
                         },0)}</strong>
-                        </div>
+                        </div> 
+                      </div>
+                      <div className='row'>
+                        <div className='col'><strong>Total Volume Point</strong></div>
+                        <div className='col'><strong>{finalProducts.reduce((acc, curr) => {
+                          return acc + curr.volumePoint
+                        },0)}</strong></div>
                       </div>
                       <hr />
                     </>
